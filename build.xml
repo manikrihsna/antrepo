@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="hello-ivy" default="resolve">
+   <property name="src.dir" value="src"/>
+   <property name="web.dir" value="war"/>
+   <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
+   <property name="name" value="fax"/>
+<property environment="env"/>
+<property name="ivy.home" value="/opt/apache-ivy-2.4.0/"/>
+
+<taskdef resource="org/apache/ivy/ant/antlib.xml" 
+ uri="antlib:org.apache.ivy.ant">
+    <classpath>
+        <fileset dir="${ivy.home}">
+            <include name="*.jar"/>
+        </fileset>
+    </classpath>
+</taskdef>
+   <path id="master-classpath">
+      <fileset dir="${web.dir}/WEB-INF/lib">
+         <include name="*.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}"/>
+   </path>
+
+   <target name="build" description="Compile source tree java files">
+      <mkdir dir="${build.dir}"/>
+      <javac destdir="${build.dir}" source="1.5" target="1.5">
+         <src path="${src.dir}"/>
+         <classpath refid="master-classpath"/>
+      </javac>
+   </target>
+ 
+   <target name="clean" description="Clean output directories">
+      <delete>
+         <fileset dir="${build.dir}">
+            <include name="**/*.class"/>
+         </fileset>
+      </delete>
+   </target>   
+<target name="build-jar" depends="clean,build">
+   <jar destfile="${web.dir}/lib/util.jar"
+      basedir="${build.dir}/classes"
+      includes="faxapp/util/**"
+      excludes="**/Test.class">
+
+      <manifest>
+         <attribute name="Main-Class" value="com.tutorialspoint.util.FaxUtil"/>
+      </manifest>
+
+   </jar>
+</target> 
+  <target name="junit" depends="build-jar">
+        <mkdir dir="${report.dir}"/>
+        <junit printsummary="yes">
+            <classpath>
+                <path refid="classpath"/>
+                <path refid="application"/>
+            </classpath>
+            
+            <formatter type="xml"/>
+            
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${src.dir}" includes="*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>   
+    <!-- ================================= 
+          target: resolve              
+         ================================= -->
+    <target name="resolve" description="--> retrieve dependencies with ivy">
+        <ivy:retrieve />
+    </target>
+</project>
+
