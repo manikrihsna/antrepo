@@ -9,7 +9,7 @@
     <tstamp/>
     <!-- Create the build directory structure used by compile -->
     <mkdir dir="${build}"/>
-    <mkdir srcdir="${src}"/>
+    <mkdir src="${src}"/>
     
   </target>
 
