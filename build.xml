@@ -32,7 +32,7 @@
     <delete dir="${build}"/>
     <delete dir="${dist}"/>
   </target> 
-  <target name="junit" depends="build-jar">
+  <target name="junit" depends="dist">
         <mkdir dir="${report.dir}"/>
         <junit printsummary="yes">
             <classpath>
