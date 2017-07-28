@@ -28,6 +28,7 @@
 
    <target name="build" description="Compile source tree java files">
       <mkdir dir="${build.dir}"/>
+	   <mkdir dir="$src.dir}"/>
       <javac destdir="${build.dir}" source="1.5" target="1.5">
          <src path="${src.dir}"/>
          <classpath refid="master-classpath"/>
