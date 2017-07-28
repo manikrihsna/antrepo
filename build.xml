@@ -58,7 +58,7 @@
         <mkdir dir="${report.dir}"/>
         <junit printsummary="yes">
             <classpath>
-                <path refid="classpath"/>
+                <path refid="master-classpath"/>
                 <path refid="application"/>
             </classpath>
             
