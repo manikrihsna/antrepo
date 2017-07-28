@@ -16,7 +16,7 @@
     </classpath>
 </taskdef>
    <path id="master-classpath">
-	   <mkdirdir="${web.dir}/WEB-INF/lib"/>
+	   <mkdir dir="${web.dir}/WEB-INF/lib"/>
       <fileset dir="${web.dir}/WEB-INF/lib">
          <include name="*.jar"/>
       </fileset>
