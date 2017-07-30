@@ -1,7 +1,7 @@
 <ivysettings>
   <settings defaultResolver="nexus"/>
   <property name="nexus-public"
-                   value="http://10.74.196.176:8081/repository/ant-proxyrepo/"/>
+                   value="http://192.168.0.24:8081/repository/ant-proxyrepo/"/>
   <resolvers>
       <ibiblio name="nexus" m2compatible="true" root="${nexus-public}"/>
     </resolvers>
