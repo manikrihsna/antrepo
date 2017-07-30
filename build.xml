@@ -45,7 +45,7 @@
 <target name="build-jar" depends="clean,build">
 	<mkdir dir="${build.dir}/classes"/>
    <jar destfile="${web.dir}/lib/util.jar"
-      basedir="${build.dir}/classes"
+      basedir="${build.dir}"
       includes="faxapp/util/**"
       excludes="**/Test.class">
 
